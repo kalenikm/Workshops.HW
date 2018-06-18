@@ -36,6 +36,7 @@ namespace Rocket.BL
             Bind<IUserAccountStatusService>().To<UserAccountStatusService>();
             Bind<IUserManagementService>().To<UserManagementService>();
             Bind<IRoleService>().To<RoleService>();
+            Bind<IUserRoleManager>().To<UserRoleManager>();
 
             Bind<IGenreManager>().To<ChangeGenreManagerService>();
             Bind<IGenreService>().To<GenreService>();
