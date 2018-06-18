@@ -233,10 +233,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rocket.BL.Common\Rocket.BL.Common.csproj">
-      <Project>{80692A9E-FD37-4473-9E91-FE1D345EE27A}</Project>
-      <Name>Rocket.BL.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rocket.DAL.Common\Rocket.DAL.Common.csproj">
       <Project>{4383C0FF-4C4A-4C42-BB46-5A5137E5E7AD}</Project>
       <Name>Rocket.DAL.Common</Name>

@@ -14,6 +14,7 @@ using Rocket.BL.Services.PersonalArea;
 using Rocket.BL.Services.ReleaseList;
 using Rocket.BL.Services.User;
 using Rocket.BL.Services.UserPaymentService;
+using Rocket.BL.Services.UserServices;
 using Rocket.BL.Validators.User;
 using System.Collections.Generic;
 
@@ -34,6 +35,7 @@ namespace Rocket.BL
             Bind<IUserAccountLevelService>().To<UserAccountLevelService>();
             Bind<IUserAccountStatusService>().To<UserAccountStatusService>();
             Bind<IUserManagementService>().To<UserManagementService>();
+            Bind<IRoleService>().To<RoleService>();
 
             Bind<IGenreManager>().To<ChangeGenreManagerService>();
             Bind<IGenreService>().To<GenreService>();

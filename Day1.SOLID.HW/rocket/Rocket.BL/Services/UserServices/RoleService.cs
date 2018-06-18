@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Common.Logging;
 using Microsoft.AspNet.Identity;
+using Rocket.BL.Common.Services;
 using Rocket.BL.Common.Models.UserRoles;
 using Rocket.DAL.Common.DbModels.Identity;
 using Rocket.DAL.Common.UoW;
 using Rocket.DAL.Identity;
+using System.Linq.Expressions;
 
 namespace Rocket.BL.Services.UserServices
 {
-    public class RoleService : BaseService
+    public class RoleService : BaseService, IRoleService
     {
         private readonly ILog _logger;
         private readonly RockeRoleManager _roleManager;
@@ -38,16 +40,17 @@ namespace Rocket.BL.Services.UserServices
         public IEnumerable<Role> GetAllRoles()
         {
             _logger.Trace($"Request GetAllRoles");
-            return _roleManager.Roles.Include(t => t.Permissions).ToArray().Select(Mapper.Map<Role>);
+            return _roleManager.Roles.Include(t => t.Permissions).Select(Mapper.Map<Role>);
+            
         }
 
-        //public IEnumerable<Role> Get(
-        //    Expression<Func<DbRole, bool>> filter = null, 
-        //    Func<IQueryable<DbRole>, IOrderedQueryable<DbRole>> orderBy = null, 
-        //    string includeProperties = "")
-        //{
-        //    return _unitOfWork.RoleRepository.Get(filter, orderBy, includeProperties).Select(Mapper.Map<Role>);
-        //}
+        public IEnumerable<Role> Get(
+            Expression<Func<DbRole, bool>> filter = null,
+            Func<IQueryable<DbRole>, IOrderedQueryable<DbRole>> orderBy = null,
+            string includeProperties = "")
+        {
+            return _unitOfWork.RoleRepository.Get(filter, orderBy, includeProperties).Select(Mapper.Map<Role>);
+        }
 
         public async Task<Role> GetById(string roleId)
         {
@@ -77,10 +80,10 @@ namespace Rocket.BL.Services.UserServices
             //_unitOfWork.SaveChanges();
         }
 
-        public async Task<IdentityResult> Update(string roleId, string roleName)
+        public async Task<IdentityResult> Update(Role role)
         {
-            var dbRole = await _roleManager.FindByIdAsync(roleId);
-            dbRole.Name = roleName;
+            var dbRole = await _roleManager.FindByIdAsync(role.Id);
+            dbRole = Mapper.Map<DbRole>(role);
 
             _logger.Trace($"Request Update in queue: Role {dbRole}");
             var result = await _roleManager.UpdateAsync(dbRole).ConfigureAwait(false);
@@ -108,5 +111,7 @@ namespace Rocket.BL.Services.UserServices
             //_logger.Debug($"Role {id} removed from DB");
             //_unitOfWork.SaveChanges();
         }
+
+
     }
 }

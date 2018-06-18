@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Rocket.BL.Common.Models.UserRoles;
-using Rocket.BL.Services.UserServices;
+using Rocket.BL.Common.Services;
 using Swashbuckle.Swagger.Annotations;
 
 namespace Rocket.Web.Controllers.UserRole
@@ -12,9 +12,9 @@ namespace Rocket.Web.Controllers.UserRole
     [RoutePrefix("roles")]
     public class RoleController : ApiController
     {
-        private readonly RoleService _roleManager;
+        private readonly IRoleService _roleManager;
 
-        public RoleController(RoleService roleManager)
+        public RoleController(IRoleService roleManager)
         {
             _roleManager = roleManager;
         }
@@ -72,7 +72,9 @@ namespace Rocket.Web.Controllers.UserRole
                 return new StatusCodeResult(HttpStatusCode.BadRequest, Request);
             }
 
-            await _roleManager.Update(roleId, roleName);
+            model.Name = roleName;
+
+            await _roleManager.Update(model);
             return new StatusCodeResult(HttpStatusCode.NoContent, Request);
 
         }
