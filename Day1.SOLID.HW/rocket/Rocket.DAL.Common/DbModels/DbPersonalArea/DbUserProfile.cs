@@ -33,7 +33,7 @@ namespace Rocket.DAL.Common.DbModels.DbPersonalArea
         /// <summary>
         /// Коллекция TV жанров пользователя.
         /// </summary>
-        public virtual ICollection<GenreEntity> Genres { get; set; }
+        public virtual ICollection<TvSeriesGenreEntity> Genres { get; set; }
 
         /// <summary>
         /// Коллекция музыкальных жанров пользователя.

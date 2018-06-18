@@ -117,7 +117,7 @@ namespace Rocket.Parser.Parsers
                     using (var rocketContext = new RocketContext())
                     {
                         var personRepository = new BaseRepository<PersonEntity>(rocketContext);
-                        var genreRepository = new BaseRepository<GenreEntity>(rocketContext);
+                        var genreRepository = new BaseRepository<TvSeriesGenreEntity>(rocketContext);
                         var tvSeriasRepository = new BaseRepository<TvSeriasEntity>(rocketContext);
                         var seasonRepository = new BaseRepository<SeasonEntity>(rocketContext);
                         var episodeRepository = new BaseRepository<EpisodeEntity>(rocketContext);
@@ -235,7 +235,7 @@ namespace Rocket.Parser.Parsers
             {
                 using (var rocketContext = new RocketContext())
                 {
-                    var genreRepository = new BaseRepository<GenreEntity>(rocketContext);
+                    var genreRepository = new BaseRepository<TvSeriesGenreEntity>(rocketContext);
                     
                     var listGenreEntityDb = genreRepository.Queryable().AsNoTracking().ToList();
 
@@ -261,13 +261,13 @@ namespace Rocket.Parser.Parsers
                     }
 
                     //Получаем полный список жанров
-                    var listGenreEntityAll = new List<GenreEntity>();
+                    var listGenreEntityAll = new List<TvSeriesGenreEntity>();
                     listTvSeriasAgregateModelExt.ForEach(item =>
                         listGenreEntityAll.AddRange(item.TvSeriasEntity.ListGenreEntity));
 
                     //Получаем список жанров для вставки в бд
                     listGenreNameNew = listGenreNameNew.Distinct().ToList();
-                    var listGenreEntityNew = new List<GenreEntity>();
+                    var listGenreEntityNew = new List<TvSeriesGenreEntity>();
                     foreach (var genreNameNew in listGenreNameNew)
                     {
                         var genreEntity = listGenreEntityAll.First(item => item.Name == genreNameNew);
@@ -556,7 +556,7 @@ namespace Rocket.Parser.Parsers
             //Заполняем список жанров
             foreach (var genreName in listGenreName)
             {
-                var genreEntityNew = new GenreEntity()
+                var genreEntityNew = new TvSeriesGenreEntity()
                 {
                     Name = genreName,
                     CategoryCode = (int)CategoryCode.TvSeria

@@ -74,7 +74,7 @@ namespace Rocket.DAL.UoW
             IBaseRepository<DbMusician> musicianRepository,
             IBaseRepository<CategoryEntity> categoryRepository,
             IBaseRepository<EpisodeEntity> episodeRepository,
-            IBaseRepository<GenreEntity> genreRepository,
+            IBaseRepository<TvSeriesGenreEntity> genreRepository,
             IBaseRepository<PersonEntity> personRepository,
             IBaseRepository<PersonTypeEntity> personTypeRepository,
             IBaseRepository<SeasonEntity> seasonRepository,
@@ -194,7 +194,7 @@ namespace Rocket.DAL.UoW
         /// <summary>
         /// Репозиторий жанра
         /// </summary>
-        public IBaseRepository<GenreEntity> GenreRepository { get; }
+        public IBaseRepository<TvSeriesGenreEntity> GenreRepository { get; }
 
         public IBaseRepository<PersonEntity> PersonRepository { get; }
 

@@ -6,20 +6,15 @@ using System.Collections.Generic;
 
 namespace Rocket.BL.Services.ReleaseList
 {
-    public class GenreService : BaseService, IGenreService
+    public class TvSeriesGenreService : BaseService, ITvSeriesGenreService
     {
-        public GenreService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public TvSeriesGenreService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
 
         public IEnumerable<TvSeriesGenreDto> GetTvSeriesGenres()
         {
             return Mapper.Map<IEnumerable<TvSeriesGenreDto>>(_unitOfWork.GenreRepository.Get());
-        }
-
-        public IEnumerable<MusicGenreDto> GetMusicGenres()
-        {
-            return Mapper.Map<IEnumerable<MusicGenreDto>>(_unitOfWork.MusicGenreRepository.Get());
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Rocket.DAL
             Bind<IBaseRepository<DbMusician>>().To<BaseRepository<DbMusician>>();
             Bind<IBaseRepository<CategoryEntity>>().To<BaseRepository<CategoryEntity>>();
             Bind<IBaseRepository<EpisodeEntity>>().To<BaseRepository<EpisodeEntity>>();
-            Bind<IBaseRepository<GenreEntity>>().To<BaseRepository<GenreEntity>>();
+            Bind<IBaseRepository<TvSeriesGenreEntity>>().To<BaseRepository<TvSeriesGenreEntity>>();
             Bind<IBaseRepository<PersonEntity>>().To<BaseRepository<PersonEntity>>();
             Bind<IBaseRepository<PersonTypeEntity>>().To<BaseRepository<PersonTypeEntity>>();
             Bind<IBaseRepository<SeasonEntity>>().To<BaseRepository<SeasonEntity>>();

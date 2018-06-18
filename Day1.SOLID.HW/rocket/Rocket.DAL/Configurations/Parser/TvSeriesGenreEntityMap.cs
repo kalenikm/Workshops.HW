@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Rocket.DAL.Configurations.Parser
 {
-    public class GenreEntityMap : EntityTypeConfiguration<GenreEntity>
+    public class TvSeriesGenreEntityMap : EntityTypeConfiguration<TvSeriesGenreEntity>
     {
-        public GenreEntityMap()
+        public TvSeriesGenreEntityMap()
         {
             ToTable("Genre");
 

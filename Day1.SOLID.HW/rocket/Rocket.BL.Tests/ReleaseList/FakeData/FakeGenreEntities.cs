@@ -14,12 +14,12 @@ namespace Rocket.BL.Tests.ReleaseList.FakeData
         /// <summary>
         /// Возвращает генератор данных о жанрах видео
         /// </summary>
-        public Faker<GenreEntity> GenreFaker { get; }
+        public Faker<TvSeriesGenreEntity> GenreFaker { get; }
 
         /// <summary>
         /// Возвращает коллекцию сгенерированных жанров видео
         /// </summary>
-        public List<GenreEntity> GenreEntities { get; }
+        public List<TvSeriesGenreEntity> GenreEntities { get; }
 
         /// <summary>
         /// Создает новый экземпляр сгенерированных данных о жанрах видео
@@ -27,7 +27,7 @@ namespace Rocket.BL.Tests.ReleaseList.FakeData
         /// <param name="genresCount">Необходимое количество сгенерированных жанров видео</param>
         public FakeGenreEntities(int genresCount, FakeCategoryEntities categoryEntities)
         {
-            GenreFaker = new Faker<GenreEntity>("ru")
+            GenreFaker = new Faker<TvSeriesGenreEntity>("ru")
                 .RuleFor(g => g.Id, f => (short)f.IndexFaker)
                 .RuleFor(g => g.Name, f => f.Random.Word())
                 .RuleFor(g => g.Category, f => f.PickRandom(categoryEntities.CategoryEntities))

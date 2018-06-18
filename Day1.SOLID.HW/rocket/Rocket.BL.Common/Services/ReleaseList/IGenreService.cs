@@ -1,13 +1,9 @@
-﻿using Rocket.BL.Common.DtoModels.ReleaseList;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Rocket.BL.Common.Services.ReleaseList
 {
-    public interface IGenreService : IDisposable
+    public interface IGenreService : IMusicGenreService, ITvSeriesGenreService, IDisposable
     {
-        IEnumerable<GenreDto> GetTvSeriesGenres();
 
-        IEnumerable<GenreDto> GetMusicGenres();
     }
 }

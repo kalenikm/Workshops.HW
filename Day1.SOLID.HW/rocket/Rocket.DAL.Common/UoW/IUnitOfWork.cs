@@ -136,7 +136,7 @@ namespace Rocket.DAL.Common.UoW
 
         IBaseRepository<EpisodeEntity> EpisodeRepository { get; }
 
-        IBaseRepository<GenreEntity> GenreRepository { get; }
+        IBaseRepository<TvSeriesGenreEntity> GenreRepository { get; }
 
         IBaseRepository<PersonEntity> PersonRepository { get; }
 

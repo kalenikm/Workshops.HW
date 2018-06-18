@@ -137,7 +137,7 @@
     <Compile Include="Configurations\Parser\PersonTypeEntityMap.cs" />
     <Compile Include="Configurations\Parser\SeasonEntityMap.cs" />
     <Compile Include="Configurations\Parser\TvSeriasEntityMap.cs" />
-    <Compile Include="Configurations\Parser\GenreEntityMap.cs" />
+    <Compile Include="Configurations\Parser\TvSeriesGenreEntityMap.cs" />
     <Compile Include="Configurations\Notification\EmailTemplateConfiguration.cs" />
     <Compile Include="Configurations\Notification\GuestBillingConfiguration.cs" />
     <Compile Include="Configurations\Notification\ReceiverConfiguration .cs" />

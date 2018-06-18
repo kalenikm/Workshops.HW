@@ -39,6 +39,10 @@ namespace Rocket.BL
             Bind<IUserRoleManager>().To<UserRoleManager>();
 
             Bind<IGenreManager>().To<ChangeGenreManagerService>();
+            Bind<IMusicGenreManager>().To<MusicGenreManagerService>();
+            Bind<ITvSeriesGenreManager>().To<TvSeriesGenreManagerService>();
+            Bind<IMusicGenreService>().To<MusicGenreService>();
+            Bind<ITvSeriesGenreService>().To<TvSeriesGenreService>();
             Bind<IGenreService>().To<GenreService>();
             Bind<IMailNotificationService>().To<MailNotificationService>()
                 .WithConstructorArgument(

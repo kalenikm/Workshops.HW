@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DtoModels\ReleaseList\MusicGenreDto.cs" />
+    <Compile Include="DtoModels\ReleaseList\TvSeriesGenreDto.cs" />
     <Compile Include="Enums\BillingType.cs" />
     <Compile Include="DtoModels\ReleaseList\EpisodeFullDto.cs" />
     <Compile Include="DtoModels\ReleaseList\EpisodeDto.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Services\IUserRoleManager.cs" />
     <Compile Include="Services\PersonalArea\IEmailManager.cs" />
     <Compile Include="Services\PersonalArea\IGenreManager.cs" />
+    <Compile Include="Services\PersonalArea\IMusicGenreManager.cs" />
     <Compile Include="Services\PersonalArea\IPersonalData.cs" />
     <Compile Include="Models\PersonalArea\Category.cs" />
     <Compile Include="Models\PersonalArea\Genre.cs" />
@@ -159,10 +162,13 @@
     <Compile Include="Models\UserRoles\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPermissionService.cs" />
+    <Compile Include="Services\PersonalArea\ITvSeriesGenreManager.cs" />
     <Compile Include="Services\ReleaseList\IEpisodeService.cs" />
     <Compile Include="Services\ReleaseList\IGenreService.cs" />
+    <Compile Include="Services\ReleaseList\IMusicGenreService.cs" />
     <Compile Include="Services\ReleaseList\ISubscriptionService.cs" />
     <Compile Include="Services\ReleaseList\ITvSeriesDetailedInfoService.cs" />
+    <Compile Include="Services\ReleaseList\ITvSeriesGenreService.cs" />
     <Compile Include="Services\UserPayment\IUserPaymentService.cs" />
     <Compile Include="Services\User\IUserAccountLevelService.cs" />
     <Compile Include="Services\User\IUserAccountStatusService.cs" />

@@ -12,11 +12,11 @@ namespace Rocket.BL.Common.Mappings.ReleaseList
     {
         public GenreMappingProfile()
         {
-            CreateMap<Genre, GenreEntity>()
+            CreateMap<Genre, TvSeriesGenreEntity>()
                 .IncludeBase<Subscribable, SubscribableEntity>()
                 .ReverseMap();
 
-            CreateMap<GenreEntity, GenreDto>();
+            CreateMap<TvSeriesGenreEntity, GenreDto>();
 
             CreateMap<DbMusicGenre, GenreDto>();
         }

@@ -99,7 +99,7 @@ namespace Rocket.DAL.Context
 
         public DbSet<PersonTypeEntity> PersonTypeEntities { get; set; }
 
-        public DbSet<GenreEntity> GenreEntities { get; set; }
+        public DbSet<TvSeriesGenreEntity> GenreEntities { get; set; }
 
         public DbSet<PersonEntity> PersonEntities { get; set; }
 
@@ -181,7 +181,7 @@ namespace Rocket.DAL.Context
             modelBuilder.Configurations.Add(new CategoryEntityMap());
             modelBuilder.Configurations.Add(new TvSeriasEntityMap());
             modelBuilder.Configurations.Add(new PersonTypeEntityMap());
-            modelBuilder.Configurations.Add(new GenreEntityMap());
+            modelBuilder.Configurations.Add(new TvSeriesGenreEntityMap());
             modelBuilder.Configurations.Add(new PersonEntityMap());
             modelBuilder.Configurations.Add(new EpisodeEntityMap());
             modelBuilder.Configurations.Add(new SeasonEntityMap());

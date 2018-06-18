@@ -8,6 +8,6 @@ namespace Rocket.DAL.Common.DbModels.Parser
 
         public string Name { get; set; }
 
-        public ICollection<GenreEntity> ListGenre { get; set; }
+        public ICollection<TvSeriesGenreEntity> ListGenre { get; set; }
     }
 }
