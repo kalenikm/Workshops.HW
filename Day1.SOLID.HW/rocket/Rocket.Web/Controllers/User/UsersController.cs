@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Rocket.BL.Common.Services.User;
-using Rocket.DAL.Common.DbModels.DbPersonalArea;
-using Rocket.DAL.Common.DbModels.User;
-using Rocket.DAL.Identity;
+//using Rocket.DAL.Common.DbModels.DbPersonalArea;
+//using Rocket.DAL.Common.DbModels.User;
+//using Rocket.DAL.Identity;
 using Rocket.Web.Attributes;
 using Swashbuckle.Swagger.Annotations;
 using System;
@@ -21,15 +21,17 @@ namespace Rocket.Web.Controllers.User
     [RoutePrefix("users")]
     public class UsersController : ApiController
     {
-        private readonly RocketUserManager _rocketUserManagerService;
-        private readonly RockeRoleManager _rolemanager;
+        //private readonly RocketUserManager _rocketUserManagerService;
+        //private readonly RockeRoleManager _rolemanager;
         private readonly IUserManagementService _userManagementService;
 
         public UsersController(
-            RocketUserManager rocketUserManagerService, RockeRoleManager rolemanager, IUserManagementService userNativeManagementService)
+            //RocketUserManager rocketUserManagerService,
+            //RockeRoleManager rolemanager,
+            IUserManagementService userNativeManagementService)
         {
-            _rocketUserManagerService = rocketUserManagerService;
-            _rolemanager = rolemanager;
+            //_rocketUserManagerService = rocketUserManagerService;
+            //_rolemanager = rolemanager;
             _userManagementService = userNativeManagementService;
 
         }
@@ -99,18 +101,22 @@ namespace Rocket.Web.Controllers.User
         [SwaggerResponse(HttpStatusCode.Created, "New model description", typeof(BL.Common.Models.User.User))]
         public async Task<IHttpActionResult> AddUser([FromBody] BL.Common.Models.User.User user)
         {
-            //if (user == null)
-            //{
-            //    return BadRequest("User can not be empty");
-            //}
+            if (user == null)
+            {
+                return BadRequest("User can not be empty");
+            }
 
-            //var result =  _userManagementService.AddUser(user);
+            var result = _userManagementService.AddUser(user);
 
-            //if (result.IsCompleted)
-            //{
-            //    var userId = await result;
-            //    return Ok(userId);
-            //}
+            if (result.IsCompleted)
+            {
+                var userId = await result;
+                return Ok(userId);
+            }
+            else
+            {
+                return BadRequest();
+            }
             //var dbUser = Mapper.Map<DbUser>(user);
 
             //var dbUserProfile = new DbUserProfile()
@@ -126,27 +132,27 @@ namespace Rocket.Web.Controllers.User
 
             //dbUser.DbUserProfile = dbUserProfile;
 
-            await _rocketUserManagerService.CreateAsync(
-                new DbUser()
-                {
-                    Email = user.Login,
-                    UserName = user.Login,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    DbUserProfile = new DbUserProfile()
-                    {
-                        Email = new List<DbEmail>()
-                        {
-                            new DbEmail()
-                            {
-                                Name = user.Login
-                            }
-                        }
-                    }
-                },
-                user.Password).ConfigureAwait(false);
+            //await _rocketUserManagerService.CreateAsync(
+            //    new DbUser()
+            //    {
+            //        Email = user.Login,
+            //        UserName = user.Login,
+            //        FirstName = user.FirstName,
+            //        LastName = user.LastName,
+            //        DbUserProfile = new DbUserProfile()
+            //        {
+            //            Email = new List<DbEmail>()
+            //            {
+            //                new DbEmail()
+            //                {
+            //                    Name = user.Login
+            //                }
+            //            }
+            //        }
+            //    },
+            //    user.Password).ConfigureAwait(false);
 
-            return Ok();
+            //return Ok();
 
             //var result = await _rocketUserManagerService.FindByNameAsync(user.Login).ConfigureAwait(false);
 

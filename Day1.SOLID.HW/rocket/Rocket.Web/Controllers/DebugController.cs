@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Rocket.DAL.Common.DbModels.DbPersonalArea;
-using Rocket.DAL.Common.DbModels.Identity;
-using Rocket.DAL.Common.DbModels.User;
-using Rocket.DAL.Identity;
+using Rocket.BL.Common.Services;
+using Rocket.BL.Common.Services.User;
+//using Rocket.DAL.Common.DbModels.DbPersonalArea;
+//using Rocket.DAL.Common.DbModels.Identity;
+//using Rocket.DAL.Common.DbModels.User;
+//using Rocket.DAL.Identity;
 using Claim = System.IdentityModel.Claims.Claim;
 
 namespace Rocket.Web.Controllers
@@ -20,21 +22,45 @@ namespace Rocket.Web.Controllers
     [RoutePrefix("debug")]
     public class DebugController : ApiController
     {
-        private readonly RocketUserManager _usermanager;
-        private readonly RockeRoleManager _rolemanager;
+        //private readonly RocketUserManager _usermanager;
+        //private readonly RockeRoleManager _rolemanager;
+        private readonly IUserManagementService _userManagementService;
+        private readonly IRoleService _roleService;
 
-        public DebugController(RocketUserManager usermanager, RockeRoleManager rolemanager)
+        public DebugController(
+            //RocketUserManager usermanager,
+            //RockeRoleManager rolemanager,
+            IUserManagementService userManagementService,
+            IRoleService roleService)
         {
-            _usermanager = usermanager;
-            _rolemanager = rolemanager;
+            //_usermanager = usermanager;
+            //_rolemanager = rolemanager;
+            _userManagementService = userManagementService;
+            _roleService = roleService;
         }
 
         [Route("users/create")]
         [HttpGet]
         public async Task<IHttpActionResult> CreateUsers()
         {
-            await _rolemanager.CreateAsync(new DbRole() { Name = "administrator" });
-            await _rolemanager.CreateAsync(new DbRole() { Name = "user" });
+            //await _rolemanager.CreateAsync(new DbRole() { Name = "administrator" });
+            //await _rolemanager.CreateAsync(new DbRole() { Name = "user" });
+
+            await _roleService.Insert(new BL.Common.Models.UserRoles.Role() { Name = "administrator" });
+            await _roleService.Insert(new BL.Common.Models.UserRoles.Role() { Name = "user" });
+
+            await _userManagementService.AddUser(new User()
+            {
+                EmailConfirmed = true,
+                Email = "adminuser@gmail.com",
+                PhoneNumber = "+375221133654",
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0,
+                UserName = "adminUser",
+                FirstName = "Иван",
+                LastName = "Иванов",
+            })
 
             await _usermanager.CreateAsync(
                 new DbUser()
@@ -114,15 +140,17 @@ namespace Rocket.Web.Controllers
                 },
                 "password2").ConfigureAwait(false);
 
-            await _usermanager
-                .AddToRoleAsync(_usermanager.FindByName("adminUser").Id, "administrator")
-                .ConfigureAwait(false);
-            await _usermanager
-                .AddToRoleAsync(_usermanager.FindByName("firstUser").Id, "user")
-                .ConfigureAwait(false);
-            await _usermanager
-                .AddToRoleAsync(_usermanager.FindByName("secondUser").Id, "user")
-                .ConfigureAwait(false);
+            //await _usermanager
+            //    .AddToRoleAsync(_usermanager.FindByName("adminUser").Id, "administrator")
+            //    .ConfigureAwait(false);
+            //await _usermanager
+            //    .AddToRoleAsync(_usermanager.FindByName("firstUser").Id, "user")
+            //    .ConfigureAwait(false);
+            //await _usermanager
+            //    .AddToRoleAsync(_usermanager.FindByName("secondUser").Id, "user")
+            //    .ConfigureAwait(false);
+
+            await 
 
             return Ok();
         }
